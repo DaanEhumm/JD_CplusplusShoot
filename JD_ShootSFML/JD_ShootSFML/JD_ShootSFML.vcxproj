@@ -135,7 +135,16 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="AR.cpp" />
+    <ClCompile Include="Bullet.cpp" />
     <ClCompile Include="JD_ShootSFML.cpp" />
+    <ClCompile Include="Pistol.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="AR.h" />
+    <ClInclude Include="Bullet.h" />
+    <ClInclude Include="GunBase.h" />
+    <ClInclude Include="Pistol.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

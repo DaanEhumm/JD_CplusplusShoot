@@ -5,6 +5,34 @@
     {
       "AbsoluteMoniker": "D:0:0:{F57411F1-A020-4B45-A9B2-42619A50C970}|JD_ShootSFML\\JD_ShootSFML.vcxproj|C:\\Users\\daan\\Desktop\\JD_CplusplusShoot\\JD_ShootSFML\\JD_ShootSFML\\JD_ShootSFML.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{F57411F1-A020-4B45-A9B2-42619A50C970}|JD_ShootSFML\\JD_ShootSFML.vcxproj|solutionrelative:JD_ShootSFML\\JD_ShootSFML.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F57411F1-A020-4B45-A9B2-42619A50C970}|JD_ShootSFML\\JD_ShootSFML.vcxproj|C:\\Users\\daan\\Desktop\\JD_CplusplusShoot\\JD_ShootSFML\\JD_ShootSFML\\AR.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{F57411F1-A020-4B45-A9B2-42619A50C970}|JD_ShootSFML\\JD_ShootSFML.vcxproj|solutionrelative:JD_ShootSFML\\AR.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F57411F1-A020-4B45-A9B2-42619A50C970}|JD_ShootSFML\\JD_ShootSFML.vcxproj|C:\\Users\\daan\\Desktop\\JD_CplusplusShoot\\JD_ShootSFML\\JD_ShootSFML\\Bullet.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{F57411F1-A020-4B45-A9B2-42619A50C970}|JD_ShootSFML\\JD_ShootSFML.vcxproj|solutionrelative:JD_ShootSFML\\Bullet.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F57411F1-A020-4B45-A9B2-42619A50C970}|JD_ShootSFML\\JD_ShootSFML.vcxproj|C:\\Users\\daan\\Desktop\\JD_CplusplusShoot\\JD_ShootSFML\\JD_ShootSFML\\Pistol.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{F57411F1-A020-4B45-A9B2-42619A50C970}|JD_ShootSFML\\JD_ShootSFML.vcxproj|solutionrelative:JD_ShootSFML\\Pistol.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F57411F1-A020-4B45-A9B2-42619A50C970}|JD_ShootSFML\\JD_ShootSFML.vcxproj|C:\\Users\\daan\\Desktop\\JD_CplusplusShoot\\JD_ShootSFML\\JD_ShootSFML\\Pistol.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{F57411F1-A020-4B45-A9B2-42619A50C970}|JD_ShootSFML\\JD_ShootSFML.vcxproj|solutionrelative:JD_ShootSFML\\Pistol.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F57411F1-A020-4B45-A9B2-42619A50C970}|JD_ShootSFML\\JD_ShootSFML.vcxproj|C:\\Users\\daan\\Desktop\\JD_CplusplusShoot\\JD_ShootSFML\\JD_ShootSFML\\GunBase.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{F57411F1-A020-4B45-A9B2-42619A50C970}|JD_ShootSFML\\JD_ShootSFML.vcxproj|solutionrelative:JD_ShootSFML\\GunBase.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F57411F1-A020-4B45-A9B2-42619A50C970}|JD_ShootSFML\\JD_ShootSFML.vcxproj|C:\\Users\\daan\\Desktop\\JD_CplusplusShoot\\JD_ShootSFML\\JD_ShootSFML\\Bullet.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{F57411F1-A020-4B45-A9B2-42619A50C970}|JD_ShootSFML\\JD_ShootSFML.vcxproj|solutionrelative:JD_ShootSFML\\Bullet.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F57411F1-A020-4B45-A9B2-42619A50C970}|JD_ShootSFML\\JD_ShootSFML.vcxproj|C:\\Users\\daan\\Desktop\\JD_CplusplusShoot\\JD_ShootSFML\\JD_ShootSFML\\AR.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{F57411F1-A020-4B45-A9B2-42619A50C970}|JD_ShootSFML\\JD_ShootSFML.vcxproj|solutionrelative:JD_ShootSFML\\AR.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     }
   ],
   "DocumentGroupContainers": [
@@ -14,8 +42,73 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 5,
           "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "AR.cpp",
+              "DocumentMoniker": "C:\\Users\\daan\\Desktop\\JD_CplusplusShoot\\JD_ShootSFML\\JD_ShootSFML\\AR.cpp",
+              "RelativeDocumentMoniker": "JD_ShootSFML\\AR.cpp",
+              "ToolTip": "C:\\Users\\daan\\Desktop\\JD_CplusplusShoot\\JD_ShootSFML\\JD_ShootSFML\\AR.cpp",
+              "RelativeToolTip": "JD_ShootSFML\\AR.cpp",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2025-07-14T07:56:38.085Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Pistol.cpp",
+              "DocumentMoniker": "C:\\Users\\daan\\Desktop\\JD_CplusplusShoot\\JD_ShootSFML\\JD_ShootSFML\\Pistol.cpp",
+              "RelativeDocumentMoniker": "JD_ShootSFML\\Pistol.cpp",
+              "ToolTip": "C:\\Users\\daan\\Desktop\\JD_CplusplusShoot\\JD_ShootSFML\\JD_ShootSFML\\Pistol.cpp",
+              "RelativeToolTip": "JD_ShootSFML\\Pistol.cpp",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2025-07-14T07:56:32.404Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Bullet.cpp",
+              "DocumentMoniker": "C:\\Users\\daan\\Desktop\\JD_CplusplusShoot\\JD_ShootSFML\\JD_ShootSFML\\Bullet.cpp",
+              "RelativeDocumentMoniker": "JD_ShootSFML\\Bullet.cpp",
+              "ToolTip": "C:\\Users\\daan\\Desktop\\JD_CplusplusShoot\\JD_ShootSFML\\JD_ShootSFML\\Bullet.cpp",
+              "RelativeToolTip": "JD_ShootSFML\\Bullet.cpp",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABQAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2025-07-14T07:56:29.678Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "Bullet.h",
+              "DocumentMoniker": "C:\\Users\\daan\\Desktop\\JD_CplusplusShoot\\JD_ShootSFML\\JD_ShootSFML\\Bullet.h",
+              "RelativeDocumentMoniker": "JD_ShootSFML\\Bullet.h",
+              "ToolTip": "C:\\Users\\daan\\Desktop\\JD_CplusplusShoot\\JD_ShootSFML\\JD_ShootSFML\\Bullet.h",
+              "RelativeToolTip": "JD_ShootSFML\\Bullet.h",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAACAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2025-07-14T07:56:12.622Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "GunBase.h",
+              "DocumentMoniker": "C:\\Users\\daan\\Desktop\\JD_CplusplusShoot\\JD_ShootSFML\\JD_ShootSFML\\GunBase.h",
+              "RelativeDocumentMoniker": "JD_ShootSFML\\GunBase.h",
+              "ToolTip": "C:\\Users\\daan\\Desktop\\JD_CplusplusShoot\\JD_ShootSFML\\JD_ShootSFML\\GunBase.h",
+              "RelativeToolTip": "JD_ShootSFML\\GunBase.h",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAACAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2025-07-14T07:55:29.838Z",
+              "EditorCaption": ""
+            },
             {
               "$type": "Document",
               "DocumentIndex": 0,
@@ -24,9 +117,35 @@
               "RelativeDocumentMoniker": "JD_ShootSFML\\JD_ShootSFML.cpp",
               "ToolTip": "C:\\Users\\daan\\Desktop\\JD_CplusplusShoot\\JD_ShootSFML\\JD_ShootSFML\\JD_ShootSFML.cpp",
               "RelativeToolTip": "JD_ShootSFML\\JD_ShootSFML.cpp",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAABIAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACQAAAA9AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
               "WhenOpened": "2025-07-11T11:35:11.29Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Pistol.h",
+              "DocumentMoniker": "C:\\Users\\daan\\Desktop\\JD_CplusplusShoot\\JD_ShootSFML\\JD_ShootSFML\\Pistol.h",
+              "RelativeDocumentMoniker": "JD_ShootSFML\\Pistol.h",
+              "ToolTip": "C:\\Users\\daan\\Desktop\\JD_CplusplusShoot\\JD_ShootSFML\\JD_ShootSFML\\Pistol.h",
+              "RelativeToolTip": "JD_ShootSFML\\Pistol.h",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAACAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2025-07-14T07:55:59.985Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "AR.h",
+              "DocumentMoniker": "C:\\Users\\daan\\Desktop\\JD_CplusplusShoot\\JD_ShootSFML\\JD_ShootSFML\\AR.h",
+              "RelativeDocumentMoniker": "JD_ShootSFML\\AR.h",
+              "ToolTip": "C:\\Users\\daan\\Desktop\\JD_CplusplusShoot\\JD_ShootSFML\\JD_ShootSFML\\AR.h",
+              "RelativeToolTip": "JD_ShootSFML\\AR.h",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2025-07-14T07:55:50.952Z",
               "EditorCaption": ""
             }
           ]
