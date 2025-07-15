@@ -137,14 +137,21 @@
   <ItemGroup>
     <ClCompile Include="AR.cpp" />
     <ClCompile Include="Bullet.cpp" />
+    <ClCompile Include="GameManager.cpp" />
     <ClCompile Include="JD_ShootSFML.cpp" />
     <ClCompile Include="Pistol.cpp" />
+    <ClCompile Include="Player.cpp" />
+    <ClCompile Include="SFMLHandler.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AR.h" />
     <ClInclude Include="Bullet.h" />
+    <ClInclude Include="Character.h" />
+    <ClInclude Include="GameManager.h" />
     <ClInclude Include="GunBase.h" />
     <ClInclude Include="Pistol.h" />
+    <ClInclude Include="Player.h" />
+    <ClInclude Include="SFMLHandler.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
