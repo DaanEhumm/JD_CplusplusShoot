@@ -3,7 +3,7 @@
 #include <SFML/Graphics.hpp>
 
 Player::Player() {
-    body.setSize({ 50.f, 50.f });
+    body.setSize({ 5.f, 5.f });
     body.setFillColor(sf::Color::Blue);
     body.setPosition({ 375.f, 275.f });
     gun = new AR();
@@ -20,6 +20,8 @@ void Player::update(float deltaTime, sf::RenderWindow& window, std::vector<Bulle
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::S))
         body.move(sf::Vector2f(0.f, speed * deltaTime));
 
+    sf::Vector2f center = body.getPosition() + body.getSize() / 2.f;
+
     if (sf::Mouse::isButtonPressed(sf::Mouse::Button::Left)) {
         sf::Vector2f center = body.getPosition() + body.getSize() / 2.f;
         sf::Vector2i mousePos = sf::Mouse::getPosition(window);
@@ -32,8 +34,10 @@ void Player::update(float deltaTime, sf::RenderWindow& window, std::vector<Bulle
 
         gun->shoot(center, direction, bullets);
     }
+    gun->setPosition(center);
 }
 
 void Player::draw(sf::RenderWindow& window) {
     window.draw(body);
+    gun->draw(window);
 }
