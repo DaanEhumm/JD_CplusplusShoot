@@ -34,7 +34,7 @@ void Player::update(float deltaTime, sf::RenderWindow& window, std::vector<Bulle
 
         gun->shoot(center, direction, bullets);
     }
-    gun->setPosition(center);
+    gun->setPosition(center, window);
 }
 
 void Player::draw(sf::RenderWindow& window) {

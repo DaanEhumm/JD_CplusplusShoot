@@ -9,7 +9,7 @@ public:
 	void shoot(sf::Vector2f position, sf::Vector2f direction, std::vector<Bullet>& bullets) override;
 	void update(float deltaTime) override;
 	void draw(sf::RenderWindow& window) override;
-	void setPosition(const sf::Vector2f& pos) override;
+	void setPosition(const sf::Vector2f& pos, sf::RenderWindow& window) override;
 
 private: 
 	sf::Texture texture;
