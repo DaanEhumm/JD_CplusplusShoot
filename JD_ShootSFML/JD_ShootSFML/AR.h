@@ -13,5 +13,5 @@ public:
 
 private: 
 	sf::Texture texture;
-	sf::Sprite sprite;
+	std::optional<sf::Sprite> sprite;
 };
