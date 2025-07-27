@@ -23,7 +23,7 @@ void SFMLHandler::processEvents() {
 }
 
 void SFMLHandler::clear() {
-    window.clear(sf::Color::Black);  
+    window.clear(sf::Color(30, 30, 30));  
 }
 
 void SFMLHandler::display() {
