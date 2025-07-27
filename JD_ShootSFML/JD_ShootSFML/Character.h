@@ -1,8 +1,8 @@
 #pragma once
-#include <SFML/Graphics.hpp>
 #include "GunBase.h"
 #include <vector>
 #include "Bullet.h"
+#include <SFML/Graphics.hpp>
 
 class Character {
 public:
