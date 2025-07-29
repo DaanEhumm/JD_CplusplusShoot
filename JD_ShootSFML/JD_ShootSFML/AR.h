@@ -14,4 +14,6 @@ public:
 private: 
 	sf::Texture texture;
 	std::optional<sf::Sprite> sprite;
+
+	sf::Texture bulletTexture; 
 };
