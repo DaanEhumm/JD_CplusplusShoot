@@ -1,0 +1,6 @@
+C:\Users\daan\Desktop\JD_CplusplusShoot\JD_ShootSFML\x64\Debug\assets\textures\ar.png
+C:\Users\daan\Desktop\JD_CplusplusShoot\JD_ShootSFML\x64\Debug\assets\textures\arBullet&Casing.png
+C:\Users\daan\Desktop\JD_CplusplusShoot\JD_ShootSFML\x64\Debug\assets\textures\arBullet.png
+C:\Users\daan\Desktop\JD_CplusplusShoot\JD_ShootSFML\x64\Debug\assets\textures\pistol.png
+C:\Users\daan\Desktop\JD_CplusplusShoot\JD_ShootSFML\x64\Debug\assets\textures\pistolBullet&Casing.png
+C:\Users\daan\Desktop\JD_CplusplusShoot\JD_ShootSFML\x64\Debug\assets\textures\pistolBullet.png
