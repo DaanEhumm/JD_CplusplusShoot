@@ -1,43 +1,44 @@
 #include "Player.h"
-#include "AR.h"
-#include <SFML/Graphics.hpp>
+#include <SFML/Window/Mouse.hpp>
+#include <SFML/Window/Keyboard.hpp>
+#include <cmath>
 
 Player::Player() {
-    body.setSize({ 5.f, 5.f });
+    body.setSize({ 20.f, 20.f });
     body.setFillColor(sf::Color::Blue);
     body.setPosition({ 375.f, 275.f });
-    gun = new AR();
+
+    weapons.emplace_back(std::make_unique<AR>());
+    weapons.emplace_back(std::make_unique<Pistol>());
 }
 
 void Player::update(float deltaTime, sf::RenderWindow& window, std::vector<Bullet>& bullets) {
     float speed = 200.f;
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::A))
-        body.move(sf::Vector2f(-speed * deltaTime, 0.f));
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::D))
-        body.move(sf::Vector2f(speed * deltaTime, 0.f));
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::W))
-        body.move(sf::Vector2f(0.f, -speed * deltaTime));
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::S))
-        body.move(sf::Vector2f(0.f, speed * deltaTime));
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::A)) body.move(sf::Vector2f( - speed * deltaTime, 0));
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::D)) body.move(sf::Vector2f(speed * deltaTime, 0));
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::W)) body.move(sf::Vector2f(0, -speed * deltaTime));
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::S)) body.move(sf::Vector2f(0, speed * deltaTime));
 
     sf::Vector2f center = body.getPosition() + body.getSize() / 2.f;
-
-    if (sf::Mouse::isButtonPressed(sf::Mouse::Button::Left)) {
-        sf::Vector2f center = body.getPosition() + body.getSize() / 2.f;
-        sf::Vector2i mousePos = sf::Mouse::getPosition(window);
-        sf::Vector2f worldMouse = window.mapPixelToCoords(mousePos);
-
-        sf::Vector2f direction = worldMouse - center;
-        float length = std::sqrt(direction.x * direction.x + direction.y * direction.y);
-        if (length != 0.f)
-            direction /= length;
-
-        gun->shoot(center, direction, bullets);
-    }
+    auto& gun = weapons[currentWeaponIndex];
     gun->setPosition(center, window);
+    gun->update(deltaTime);
+
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Num1)) currentWeaponIndex = 0;
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Num2)) currentWeaponIndex = 1;
+
+    bool leftMouse = sf::Mouse::isButtonPressed(sf::Mouse::Button::Left);
+    if ((currentWeaponIndex == 0 && leftMouse) || (currentWeaponIndex == 1 && leftMouse && !leftMousePreviouslyPressed)) {
+        sf::Vector2f mousePos = window.mapPixelToCoords(sf::Mouse::getPosition(window));
+        sf::Vector2f dir = mousePos - center;
+        float len = std::sqrt(dir.x * dir.x + dir.y * dir.y);
+        if (len != 0) dir /= len;
+        gun->tryShoot(center, dir, bullets);
+    }
+    leftMousePreviouslyPressed = leftMouse;
 }
 
 void Player::draw(sf::RenderWindow& window) {
     window.draw(body);
-    gun->draw(window);
+    weapons[currentWeaponIndex]->draw(window);
 }

@@ -138,6 +138,7 @@
     <ClCompile Include="AR.cpp" />
     <ClCompile Include="Bullet.cpp" />
     <ClCompile Include="GameManager.cpp" />
+    <ClCompile Include="GunBase.cpp" />
     <ClCompile Include="JD_ShootSFML.cpp" />
     <ClCompile Include="Pistol.cpp" />
     <ClCompile Include="Player.cpp" />

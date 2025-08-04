@@ -36,6 +36,9 @@
     <ClCompile Include="Player.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="GunBase.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GunBase.h">
@@ -64,6 +67,21 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
+    <None Include="assets\**\*.*">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="assets\**\*.*">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="assets\**\*.*">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="assets\**\*.*">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="assets\**\*.*">
+      <Filter>Resource Files</Filter>
+    </None>
     <None Include="assets\**\*.*">
       <Filter>Resource Files</Filter>
     </None>

@@ -1,19 +1,18 @@
 #pragma once
 #include "GunBase.h"
+#include <optional>
 #include <SFML/Graphics.hpp>
-#include <SFML/System.hpp>
+#include <iostream>
+#include <cmath>
 
 class AR : public GunBase {
 public:
-	AR();
-	void shoot(sf::Vector2f position, sf::Vector2f direction, std::vector<Bullet>& bullets) override;
-	void update(float deltaTime) override;
-	void draw(sf::RenderWindow& window) override;
-	void setPosition(const sf::Vector2f& pos, sf::RenderWindow& window) override;
+    AR();
+    void setPosition(const sf::Vector2f& pos, sf::RenderWindow& window) override;
 
-private: 
-	sf::Texture texture;
-	std::optional<sf::Sprite> sprite;
+protected:
+    void spawnBullet(sf::Vector2f position, sf::Vector2f direction, std::vector<Bullet>& bullets) override;
 
-	sf::Texture bulletTexture; 
+private:
+    sf::Texture gunTexture;
 };
