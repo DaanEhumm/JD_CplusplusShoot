@@ -137,6 +137,7 @@
   <ItemGroup>
     <ClCompile Include="AR.cpp" />
     <ClCompile Include="Bullet.cpp" />
+    <ClCompile Include="Enemey.cpp" />
     <ClCompile Include="GameManager.cpp" />
     <ClCompile Include="JD_ShootSFML.cpp" />
     <ClCompile Include="Pistol.cpp" />
@@ -147,6 +148,7 @@
     <ClInclude Include="AR.h" />
     <ClInclude Include="Bullet.h" />
     <ClInclude Include="Character.h" />
+    <ClInclude Include="Enemey.h" />
     <ClInclude Include="GameManager.h" />
     <ClInclude Include="GunBase.h" />
     <ClInclude Include="Pistol.h" />
