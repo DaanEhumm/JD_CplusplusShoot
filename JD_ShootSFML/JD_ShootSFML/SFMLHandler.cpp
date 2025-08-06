@@ -1,4 +1,5 @@
 #include "SFMLHandler.h"
+#include <iostream>
 #include <SFML/Graphics.hpp>
 #include <SFML/System.hpp>
 #include <SFML/Window.hpp>
@@ -37,6 +38,38 @@ bool SFMLHandler::isOpen() const {
 sf::RenderWindow& SFMLHandler::getWindow() {
     return window;
 }
+
+
+#include <unordered_map>
+
+sf::Texture& SFMLHandler::GetTexture(const std::string& Path) {
+    static std::unordered_map<std::string, sf::Texture> textures;
+
+    std::unordered_map<std::string, sf::Texture>::iterator it = textures.find(Path);
+    if (it != textures.end()) {
+        return it->second; 
+    }
+
+
+    sf::Texture texture;
+    if (!texture.loadFromFile(Path)) {
+        std::cout << "Path could not be found (texture loading issue):" << Path << std::endl;
+     
+    }
+
+    textures[Path] = std::move(texture);  // store texture in map
+    return textures[Path];  // return reference to stored texture
+}
+
+
+sf::Sprite  SFMLHandler::RenderSprite(sf::Texture& Texture, float X, float Y) {
+    sf::Sprite sprite(Texture);
+    sf::Vector2 myvector = sf::Vector2(X, Y);
+    sprite.setPosition(myvector);
+    return sprite;
+}
+
+
 
 float SFMLHandler::getDeltaTime() {
     return deltaTime;
