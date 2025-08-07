@@ -10,7 +10,7 @@ public:
     void run();
 
 private:
-    SFMLHandler sfml;
+ 
     Player player;
     std::vector<Bullet> bullets;
 };

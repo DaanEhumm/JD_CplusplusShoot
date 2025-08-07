@@ -6,13 +6,27 @@
 #include <SFML/Window/Event.hpp>
 #include <SFML/Window/Window.hpp>
 #include <SFML/System/Clock.hpp>
+#include <cmath>
+#include <thread>
+#include <chrono>
 
-SFMLHandler::SFMLHandler(unsigned int width, unsigned int height, const std::string& title)
-    : window(sf::VideoMode({ width, height }), title), deltaTime(0.0f) {
+
+sf::RenderWindow SFMLHandler::window;
+sf::Clock SFMLHandler::clock;
+float SFMLHandler::deltaTime = 0.0f;
+
+
+
+void SFMLHandler::Init() {
+    window.create(sf::VideoMode(sf::Vector2u(800, 600)), "Shooter 1v1");
     window.setFramerateLimit(60);
 }
 
-void SFMLHandler::processEvents() {
+
+
+
+
+void SFMLHandler::ProcessEvents() {
     std::optional<sf::Event> event;
     while ((event = window.pollEvent())) {
         if (event->is<sf::Event::Closed>()) {
@@ -23,19 +37,19 @@ void SFMLHandler::processEvents() {
     deltaTime = clock.restart().asSeconds();
 }
 
-void SFMLHandler::clear() {
+void SFMLHandler::Clear() {
     window.clear(sf::Color(30, 30, 30));  
 }
 
-void SFMLHandler::display() {
+void SFMLHandler::Display() {
     window.display();
 }
 
-bool SFMLHandler::isOpen() const {
+bool SFMLHandler::IsOpen() {
     return window.isOpen();
 }
 
-sf::RenderWindow& SFMLHandler::getWindow() {
+sf::RenderWindow& SFMLHandler::GetWindow() {
     return window;
 }
 
@@ -71,6 +85,42 @@ sf::Sprite  SFMLHandler::RenderSprite(sf::Texture& Texture, float X, float Y) {
 
 
 
-float SFMLHandler::getDeltaTime() {
+float SFMLHandler::GetDeltaTime() {
     return deltaTime;
 }
+
+
+bool SFMLHandler::GetCollision(const sf::Sprite& obj1, const sf::Sprite& obj2) {
+    sf::FloatRect bounds1 = obj1.getLocalBounds();
+    sf::FloatRect bounds2 = obj2.getLocalBounds();
+    float radius1 = std::sqrt(bounds1.size.x * bounds1.size.x + bounds1.size.y * bounds1.size.y) / 2.f;
+    float radius2 = std::sqrt(bounds2.size.x * bounds2.size.x + bounds2.size.y * bounds2.size.y) / 2.f;
+    
+
+    if (std::sqrt((bounds1.position.x - bounds2.position.x) + (bounds1.position.y - bounds2.position.y)) <= radius1+radius2) {
+        return true;
+     }
+    return false;
+}
+
+
+void SFMLHandler::RenderAnimation(sf::Sprite& sprite, sf::RenderWindow& window, std::vector<std::string> files, float interval, float elapsed, int index) {
+    elapsed += SFMLHandler::GetDeltaTime();
+    if (elapsed >= interval) {
+        elapsed = 0.f;
+        if (index + 1 > files.size()) {
+            index = 0;
+        }
+        sf::Texture& texture = SFMLHandler::GetTexture(files[index]);
+        sprite.setTexture(texture);
+        window.draw(sprite);
+
+        RenderAnimation(sprite, window, files, interval, elapsed, index + 1);
+    }
+}
+
+
+
+/*void RenderAnimation(sf::Sprite& sprite, sf::RenderWindow& window, std::vector<std::string> files, float interval, float elapsed = 0, int index = 0) {
+
+}*/

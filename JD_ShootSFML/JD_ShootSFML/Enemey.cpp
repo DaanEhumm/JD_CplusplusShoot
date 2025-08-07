@@ -1,11 +1,21 @@
 #include "Enemey.h"
 #include "SFMlHandler.h"
 #include <cmath>
-
-
+#include <iostream>
+#include <SFML/Graphics.hpp>
+#include <SFML/Window.hpp>   // for sf::Window, events, input
+#include "Player.h"
+#include <thread>
+#include <chrono>
+#include <functional>
 Enemy::Enemy()
-    : Sprite(SFMLHandler::GetTexture("texture")), Health(100.f), Speed(100.f) // verrander texture naar jou texture
+    : Sprite(SFMLHandler::GetTexture("assets/textures/pistol.png")), Health(100.f), Speed(100.f), DealtDamage(false) // verrander texture naar jou texture
 {
+  
+    Sprite.setPosition(sf::Vector2f(375, 275));
+  
+
+
 }
 
 
@@ -31,3 +41,32 @@ void Enemy::Move(const sf::Vector2f& targetPosition)
             Sprite.move(movement);
     }
 }
+void Enemy::ResetCooldown() {
+    std::thread([this]() {
+        std::this_thread::sleep_for(std::chrono::seconds(5));
+        DealtDamage = false;
+        }).detach();
+}
+
+void Enemy::MoveToPlayer(Player& player) {
+    sf::Vector2f enemyPos = Sprite.getPosition();
+    sf::Vector2f playerPos = player.Sprite.getPosition();
+
+
+    float dx = playerPos.x - enemyPos.x;
+    float dy = playerPos.y - enemyPos.y;
+    float distance = std::sqrt(dx * dx + dy * dy);
+    Move(playerPos);
+    if (distance < 20) {
+
+        if (SFMLHandler::GetCollision(player.Sprite, Sprite) && DealtDamage == false) {
+            player.TakeDamage(5);
+            DealtDamage = true;
+            std::cout << "player should have taken damage, new player health:" << player.Health << std::endl;
+            ResetCooldown();
+       }
+    }
+
+
+}
+

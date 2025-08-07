@@ -24,6 +24,8 @@ AR::AR() {
 
 void AR::spawnBullet(sf::Vector2f position, sf::Vector2f direction, std::vector<Bullet>& bullets) {  
    bullets.emplace_back(position + direction * 25.f, direction * 800.f, bulletTexture);  
+
+   
 }  
 
 void AR::setPosition(const sf::Vector2f& pos, sf::RenderWindow& window) {  

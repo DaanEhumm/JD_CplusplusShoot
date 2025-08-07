@@ -6,6 +6,7 @@
 #include "GameManager.h"
 
 int main() {
+    SFMLHandler::Init();
     GameManager game;
     game.run();
     return 0;

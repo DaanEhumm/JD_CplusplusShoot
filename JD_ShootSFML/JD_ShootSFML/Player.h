@@ -2,13 +2,15 @@
 #include "Character.h"
 #include "AR.h"
 #include "Pistol.h"
-
+#include <SFML/Graphics.hpp>
 class Player : public Character {
 public:
     Player();
     void update(float deltaTime, sf::RenderWindow& window, std::vector<Bullet>& bullets) override;
     void draw(sf::RenderWindow& window) override;
-
+    sf::Sprite Sprite;
+    int Health;
+    void TakeDamage(int Damage);
 private:
     std::vector<std::unique_ptr<GunBase>> weapons;
     int currentWeaponIndex = 0;
