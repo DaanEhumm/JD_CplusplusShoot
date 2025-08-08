@@ -8,16 +8,13 @@
 #include <thread>
 #include <chrono>
 #include <functional>
+#include <cstdlib>
+#include <ctime>
 Enemy::Enemy()
     : Sprite(SFMLHandler::GetTexture("assets/textures/pistol.png")), Health(100.f), Speed(100.f), DealtDamage(false) // verrander texture naar jou texture
 {
-  
-    Sprite.setPosition(sf::Vector2f(375, 275));
-  
-
-
+    Sprite.setPosition(sf::Vector2f(800, 275)); //  spawn voor nu 
 }
-
 
 void Enemy::Move(const sf::Vector2f& targetPosition)
 {
@@ -68,5 +65,17 @@ void Enemy::MoveToPlayer(Player& player) {
     }
 
 
+}
+bool Enemy::isAlive() const {
+    return Health > 0.f;
+}
+
+void Enemy::takeDamage(float damage) {
+    Health -= damage;
+    if (Health < 0.f) Health = 0.f;
+}
+
+sf::FloatRect Enemy::getBounds() const {
+    return Sprite.getGlobalBounds();
 }
 

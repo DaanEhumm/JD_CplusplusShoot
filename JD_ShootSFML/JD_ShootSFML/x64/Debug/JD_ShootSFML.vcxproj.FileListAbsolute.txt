@@ -10,3 +10,7 @@ C:\Users\julia\Documents\GitHub\JD_CplusplusShoot\JD_ShootSFML\x64\Debug\assets\
 C:\Users\julia\Documents\GitHub\JD_CplusplusShoot\JD_ShootSFML\x64\Debug\assets\textures\pistol.png
 C:\Users\julia\Documents\GitHub\JD_CplusplusShoot\JD_ShootSFML\x64\Debug\assets\textures\pistolBullet&Casing.png
 C:\Users\julia\Documents\GitHub\JD_CplusplusShoot\JD_ShootSFML\x64\Debug\assets\textures\pistolBullet.png
+C:\Users\daan\Desktop\JD_CplusplusShoot\JD_ShootSFML\x64\Debug\assets\textures\player.png
+C:\Users\daan\Desktop\JD_CplusplusShoot\JD_ShootSFML\x64\Debug\assets\textures\Player Damage.png
+C:\Users\daan\Desktop\JD_CplusplusShoot\JD_ShootSFML\x64\Debug\assets\textures\playerDeath.png
+C:\Users\daan\Desktop\JD_CplusplusShoot\JD_ShootSFML\x64\Debug\assets\textures\playerDown.png

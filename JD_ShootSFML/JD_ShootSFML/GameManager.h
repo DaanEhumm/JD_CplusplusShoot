@@ -2,6 +2,7 @@
 #include "SFMLHandler.h"
 #include "Player.h"
 #include "Bullet.h"
+#include "Enemey.h"
 #include <vector>
 
 class GameManager {

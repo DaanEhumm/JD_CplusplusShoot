@@ -13,6 +13,7 @@ public:
     virtual void draw(sf::RenderWindow& window);
     virtual void setPosition(const sf::Vector2f& pos, sf::RenderWindow& window) = 0;
 
+
 protected:
     int magazineSize = 10;
     int currentAmmo = 10;

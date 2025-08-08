@@ -14,10 +14,21 @@ void GunBase::tryShoot(sf::Vector2f position, sf::Vector2f direction, std::vecto
       fireClock.restart();  
 
       showFlash = true;  
-      flashClock.restart();  
-      muzzleFlash.setSize({ 20.f, 5.f });  
+      flashClock.restart();
+
+      sf::Vector2f flashOffset(22.f, -16.f);
+
+      float angle = std::atan2(direction.y, direction.x) * 180.f / 3.14159f;
+      float rad = angle * 3.14159f / 180.f;
+
+      sf::Vector2f rotatedOffset(
+          flashOffset.x * std::cos(rad) - flashOffset.y * std::sin(rad),
+          flashOffset.x * std::sin(rad) + flashOffset.y * std::cos(rad)
+      );
+
+      muzzleFlash.setSize({ 10.f, 3.f });  
       muzzleFlash.setFillColor(sf::Color::Yellow);  
-      muzzleFlash.setPosition(position + direction * 30.f);  
+      muzzleFlash.setPosition(position + rotatedOffset + direction * 30.f);
       muzzleFlash.setRotation(sf::degrees(std::atan2(direction.y, direction.x)));
   }  
   else if (!isReloading && currentAmmo <= 0 && reserveAmmo > 0) {  

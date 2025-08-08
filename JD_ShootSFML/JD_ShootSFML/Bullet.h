@@ -9,6 +9,9 @@ public:
     void draw(sf::RenderWindow& window);
     bool isOffScreen(const sf::RenderWindow& window) const;
 
+    bool hit = false;
+    sf::FloatRect getBounds() const;
+
 private:
     sf::Sprite sprite;
     sf::Vector2f velocity;

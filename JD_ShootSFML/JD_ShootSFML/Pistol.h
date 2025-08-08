@@ -1,4 +1,4 @@
-#pragma once
+/*#pragma once
 #include "GunBase.h"
 #include <SFML/Graphics.hpp>
 #include <optional>
@@ -14,3 +14,4 @@ protected:
 private:
     sf::Texture pistolTexture;
 };
+*/
