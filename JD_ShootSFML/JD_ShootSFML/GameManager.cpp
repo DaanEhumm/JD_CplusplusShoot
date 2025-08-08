@@ -41,7 +41,7 @@ void GameManager::run() {
 
                 if (!bullet.hit && intersects(bullet.getBounds(), enemy.getBounds())) {
                     bullet.hit = true;
-                    enemy.takeDamage(35.f); 
+                    enemy.takeDamage(20.f); 
                 }
             }
         }

@@ -1,10 +1,18 @@
-﻿  Player.cpp
+﻿  Enemey.cpp
 C:\Users\daan\Desktop\JD_CplusplusShoot\JD_ShootSFML\External\SFML-3.0.0\include\SFML\System\Exception.hpp(41,47): warning C4275: non dll-interface class 'std::runtime_error' used as base for dll-interface class 'sf::Exception'
-  (compiling source file 'Player.cpp')
+  (compiling source file 'Enemey.cpp')
       C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.42.34433\include\stdexcept(100,19):
       see declaration of 'std::runtime_error'
       C:\Users\daan\Desktop\JD_CplusplusShoot\JD_ShootSFML\External\SFML-3.0.0\include\SFML\System\Exception.hpp(41,23):
       see declaration of 'sf::Exception'
   
-C:\Users\daan\Desktop\JD_CplusplusShoot\JD_ShootSFML\JD_ShootSFML\Player.cpp(8,76): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+  GameManager.cpp
+C:\Users\daan\Desktop\JD_CplusplusShoot\JD_ShootSFML\External\SFML-3.0.0\include\SFML\System\Exception.hpp(41,47): warning C4275: non dll-interface class 'std::runtime_error' used as base for dll-interface class 'sf::Exception'
+  (compiling source file 'GameManager.cpp')
+      C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.42.34433\include\stdexcept(100,19):
+      see declaration of 'std::runtime_error'
+      C:\Users\daan\Desktop\JD_CplusplusShoot\JD_ShootSFML\External\SFML-3.0.0\include\SFML\System\Exception.hpp(41,23):
+      see declaration of 'sf::Exception'
+  
+  Generating Code...
   JD_ShootSFML.vcxproj -> C:\Users\daan\Desktop\JD_CplusplusShoot\JD_ShootSFML\x64\Debug\JD_ShootSFML.exe

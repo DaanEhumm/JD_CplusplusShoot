@@ -11,9 +11,10 @@
 #include <cstdlib>
 #include <ctime>
 Enemy::Enemy()
-    : Sprite(SFMLHandler::GetTexture("assets/textures/pistol.png")), Health(100.f), Speed(100.f), DealtDamage(false) // verrander texture naar jou texture
+    : Sprite(SFMLHandler::GetTexture("assets/textures/enemyAttack1.png")), Health(100.f), Speed(100.f), DealtDamage(false) // verrander texture naar jou texture
 {
-    Sprite.setPosition(sf::Vector2f(800, 275)); //  spawn voor nu 
+    Sprite.setPosition(sf::Vector2f(800, 400)); //  spawn voor nu 
+    Sprite.setScale(sf::Vector2(1.2f, 1.2f));
 }
 
 void Enemy::Move(const sf::Vector2f& targetPosition)
