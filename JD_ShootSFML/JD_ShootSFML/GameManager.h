@@ -4,14 +4,23 @@
 #include "Bullet.h"
 #include "Enemey.h"
 #include <vector>
+#include <SFML/Graphics.hpp>
 
 class GameManager {
 public:
     GameManager();
     void run();
 
+   
+    sf::Vector2f getPlayerWorldPosition() const {
+        return player.Sprite.getPosition() + sf::Vector2f(worldOffsetX, 0.f);
+    }
+    float worldOffsetX = 0.f;
 private:
  
     Player player;
     std::vector<Bullet> bullets;
+
+    sf::Sprite skySprite;
+    sf::Sprite roadSprite;
 };

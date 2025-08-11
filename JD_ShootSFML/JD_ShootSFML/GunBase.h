@@ -3,12 +3,14 @@
 #include <vector>
 #include <optional>
 #include "Bullet.h"
+#include <cmath>
+
 
 class GunBase {
 public:
     virtual ~GunBase() = default;
 
-    void tryShoot(sf::Vector2f position, sf::Vector2f direction, std::vector<Bullet>& bullets);
+    void tryShoot(sf::Vector2f position, sf::Vector2f direction, std::vector<Bullet>& bullets, float worldOffsetX);
     virtual void update(float deltaTime);
     virtual void draw(sf::RenderWindow& window);
     virtual void setPosition(const sf::Vector2f& pos, sf::RenderWindow& window) = 0;
@@ -36,7 +38,7 @@ protected:
 
     sf::Texture bulletTexture;
 
-    virtual void spawnBullet(sf::Vector2f position, sf::Vector2f direction, std::vector<Bullet>& bullets) = 0;
+    virtual void spawnBullet(sf::Vector2f position, sf::Vector2f direction, std::vector<Bullet>& bullets, float worldOffsetX) = 0;
     void reload();
     bool canShoot() const;
 };

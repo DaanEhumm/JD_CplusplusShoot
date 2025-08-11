@@ -16,24 +16,25 @@ AR::AR() {
    sprite->setOrigin(sf::Vector2f(gunTexture.getSize().x / 2.f, gunTexture.getSize().y / 2.f));  
    sprite->setScale(sf::Vector2f(0.8f, 0.8f));  
 
-   magazineSize = currentAmmo = 30;  
+   magazineSize = currentAmmo = 26;  
    reserveAmmo = 590;  
    reloadTime = 1.5f;  
    fireCooldown = 0.1f;  
 }  
 
-void AR::spawnBullet(sf::Vector2f position, sf::Vector2f direction, std::vector<Bullet>& bullets) {  
+void AR::spawnBullet(sf::Vector2f position, sf::Vector2f direction, std::vector<Bullet>& bullets, float worldOffsetX) {  
    bullets.emplace_back(position + direction * 25.f, direction * 800.f, bulletTexture);  
-
-   
+   (position - sf::Vector2f(worldOffsetX, 0.f)) + direction * 25.f, // screen position
+       direction * 800.f,
+       bulletTexture;
 }  
 
 void AR::setPosition(const sf::Vector2f& pos, sf::RenderWindow& window) {
     if (!sprite) return;
 
-    sf::Vector2f offset(20.f, -2.f);
+    sf::Vector2f offset(11.f, -49.f);
     sprite->setPosition(pos + offset);;
-    sprite->setScale(sf::Vector2(1.f, 1.f));
+    sprite->setScale(sf::Vector2(0.9f, 0.9f));
     sprite->setRotation(sf::degrees(0.f));
 
 }

@@ -9,8 +9,15 @@
 #include "Player.h"
 
 GameManager::GameManager()
-     {
+    : skySprite(SFMLHandler::GetTexture("assets/textures/sky.png")),
+    roadSprite(SFMLHandler::GetTexture("assets/textures/road.png"))
+{
+    skySprite.setScale({ 10.43f, 0.5f });
+	roadSprite.setScale({ 10.43f, 0.4f });
+    skySprite.setPosition(sf::Vector2f(0.f, 0.f));
+    roadSprite.setPosition(sf::Vector2f( 0.f, 172.f )); 
 }
+
 bool intersects(const sf::FloatRect& a, const sf::FloatRect& b) {         // Help with bounds of enemy and bullet
     return a.position.x < b.position.x + b.size.x &&
         a.position.x + a.size.x > b.position.x &&
@@ -26,7 +33,13 @@ void GameManager::run() {
         SFMLHandler::ProcessEvents();
         float deltaTime = SFMLHandler::GetDeltaTime();
 
-        player.update(deltaTime, SFMLHandler::GetWindow(), bullets);
+        player.update(deltaTime, SFMLHandler::GetWindow(), bullets, worldOffsetX);
+        
+        if (player.wantsToMoveRightPastLimit) {
+            float scrollSpeed = 200.f;
+            worldOffsetX += scrollSpeed * deltaTime;
+        }
+
 
         for (auto& bullet : bullets)
             bullet.update(deltaTime);
@@ -41,15 +54,15 @@ void GameManager::run() {
 
                 if (!bullet.hit && intersects(bullet.getBounds(), enemy.getBounds())) {
                     bullet.hit = true;
-                    enemy.takeDamage(20.f); 
+                    enemy.takeDamage(40.f); 
                 }
             }
         }
 
 		// Remove bullets that are off-screen or have hit an enemy
         bullets.erase(std::remove_if(bullets.begin(), bullets.end(),
-            [&window = SFMLHandler::GetWindow()](const Bullet& b) {
-                return b.isOffScreen(window) || b.hit;
+            [this, &window = SFMLHandler::GetWindow()](const Bullet& b) {
+                return b.isOffScreen(window, this->worldOffsetX) || b.hit;
             }),
             bullets.end());
 		// Remove dead enemies 
@@ -59,13 +72,33 @@ void GameManager::run() {
 
 
         SFMLHandler::Clear();
+
+        skySprite.setPosition(sf::Vector2(-worldOffsetX * 0.5f, 0.f)); 
+        roadSprite.setPosition(sf::Vector2(-worldOffsetX, 172.f));
+
+        SFMLHandler::GetWindow().draw(skySprite);
+        SFMLHandler::GetWindow().draw(roadSprite);
+
+        sf::Vector2f playerPos = player.Sprite.getPosition();
+        if (playerPos.x > 700.f) {
+            player.Sprite.setPosition(sf::Vector2(700.f, playerPos.y));
+        }
         player.draw(SFMLHandler::GetWindow());
 
-        for (auto& enemy : enemies)
-            SFMLHandler::GetWindow().draw(enemy.Sprite);
+        for (auto& enemy : enemies) {
+            sf::Sprite& eSprite = enemy.Sprite;
+            sf::Vector2f pos = eSprite.getPosition();
+            eSprite.setPosition(sf::Vector2(pos.x - worldOffsetX, pos.y));
+            SFMLHandler::GetWindow().draw(eSprite);
+            eSprite.setPosition(pos);  
+        }
 
-        for (auto& bullet : bullets)
+        for (auto& bullet : bullets) {
+            sf::Vector2f screenPos = bullet.sprite.getPosition() - sf::Vector2f(worldOffsetX, 0.f);
+            bullet.sprite.setPosition(screenPos);
             bullet.draw(SFMLHandler::GetWindow());
+            bullet.sprite.setPosition(bullet.sprite.getPosition() + sf::Vector2f(worldOffsetX, 0.f));
+        }
 
         SFMLHandler::Display();
     }

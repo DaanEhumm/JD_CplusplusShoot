@@ -7,16 +7,16 @@
 
 #include <SFML/System/Angle.hpp>
 
-void GunBase::tryShoot(sf::Vector2f position, sf::Vector2f direction, std::vector<Bullet>& bullets) {  
+void GunBase::tryShoot(sf::Vector2f position, sf::Vector2f direction, std::vector<Bullet>& bullets, float worldOffsetX) {
   if (canShoot()) {  
-      spawnBullet(position, direction, bullets);  
+      spawnBullet(position, direction, bullets, worldOffsetX);  
       currentAmmo--;  
       fireClock.restart();  
 
       showFlash = true;  
       flashClock.restart();
 
-      sf::Vector2f flashOffset(21.f, -16.f);
+      sf::Vector2f flashOffset(4.f, -63.f);
 
       float angle = std::atan2(direction.y, direction.x) * 180.f / 3.14159f;
       float rad = angle * 3.14159f / 180.f;
@@ -28,7 +28,7 @@ void GunBase::tryShoot(sf::Vector2f position, sf::Vector2f direction, std::vecto
 
       muzzleFlash.setSize({ 6.f, 2.f });  
       muzzleFlash.setFillColor(sf::Color::Yellow);  
-      muzzleFlash.setPosition(position + rotatedOffset + direction * 30.f);
+      muzzleFlash.setPosition((position - sf::Vector2f(worldOffsetX, 0.f)) + rotatedOffset + direction * 30.f);
       muzzleFlash.setRotation(sf::degrees(std::atan2(direction.y, direction.x)));
   }  
   else if (!isReloading && currentAmmo <= 0 && reserveAmmo > 0) {  

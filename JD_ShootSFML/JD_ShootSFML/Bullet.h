@@ -7,12 +7,12 @@ public:
 
     void update(float deltaTime);
     void draw(sf::RenderWindow& window);
-    bool isOffScreen(const sf::RenderWindow& window) const;
+    bool isOffScreen(const sf::RenderWindow& window, float worldOffsetX) const;
 
     bool hit = false;
     sf::FloatRect getBounds() const;
-
-private:
     sf::Sprite sprite;
+private:
     sf::Vector2f velocity;
-};
+    sf::Vector2f worldPos;
+}; 

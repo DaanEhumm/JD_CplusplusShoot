@@ -13,32 +13,47 @@
 Enemy::Enemy()
     : Sprite(SFMLHandler::GetTexture("assets/textures/enemyAttack1.png")), Health(100.f), Speed(100.f), DealtDamage(false)
 {
-    Sprite.setPosition(sf::Vector2f(800, 400)); //  spawn voor nu 
-    Sprite.setScale(sf::Vector2(1.2f, 1.2f));
+    const sf::FloatRect bounds = Sprite.getLocalBounds();
+    Sprite.setOrigin({ bounds.position.x + bounds.size.x * 0.5f, bounds.position.y + bounds.size.y });
+
+    Sprite.setScale({ 1.2f, 1.2f });
+
+
+    constexpr float GROUND_Y = 555.f;
+    Sprite.setPosition({ 800.f, GROUND_Y });
 }
 
 void Enemy::Move(const sf::Vector2f& targetPosition)
 {
-    sf::Vector2f currentPos = Sprite.getPosition();
-    sf::Vector2f direction = targetPosition - currentPos;
+    constexpr float GROUND_Y = 555.f;
 
+    sf::Vector2f currentPos = Sprite.getPosition();
+    sf::Vector2f target = targetPosition;
+    target.y = GROUND_Y;
+
+    sf::Vector2f direction = target - currentPos;
     float distance = std::sqrt(direction.x * direction.x + direction.y * direction.y); // heel simpel A^2 + B^2 = C^2, om de afstand te berekenen.
 
-    if (distance > 0.1f)
+    if (distance > 0.01f)
     {
-        sf::Vector2f directionNorm = direction / distance;
+        sf::Vector2f dirNorm = direction / distance;
+        float deltaTime = SFMLHandler::GetDeltaTime(); // smooth timing
+        sf::Vector2f movement = dirNorm * Speed * deltaTime;
 
-        
-        float deltaTime = 1.f / 60.f; // 60 = aantal frames, mag ook hoger kost wel meer kracht tho.
+        float moveSq = (movement.x * movement.x + movement.y * movement.y);
+        float distSq = (distance * distance);
 
-        sf::Vector2f movement = directionNorm * Speed * deltaTime;
-
-        if ((movement.x * movement.x + movement.y * movement.y) > (distance * distance))
-            Sprite.setPosition(targetPosition);
+        if (moveSq >= distSq)
+            Sprite.setPosition(target);
         else
             Sprite.move(movement);
     }
+
+    sf::Vector2f pos = Sprite.getPosition();
+    if (pos.y > GROUND_Y) pos.y = GROUND_Y;
+    Sprite.setPosition(pos);
 }
+
 void Enemy::ResetCooldown() {
     std::thread([this]() {
         std::this_thread::sleep_for(std::chrono::seconds(5));

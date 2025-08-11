@@ -23,9 +23,6 @@ void SFMLHandler::Init() {
 }
 
 
-
-
-
 void SFMLHandler::ProcessEvents() {
     std::optional<sf::Event> event;
     while ((event = window.pollEvent())) {

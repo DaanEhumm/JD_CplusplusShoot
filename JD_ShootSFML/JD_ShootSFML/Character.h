@@ -7,7 +7,7 @@
 
 class Character {
 public:
-    virtual void update(float deltaTime, sf::RenderWindow& window, std::vector<Bullet>& bullets) = 0;
+    virtual void update(float deltaTime, sf::RenderWindow& window, std::vector<Bullet>& bullets, float worldOffsetX) = 0;
     virtual void draw(sf::RenderWindow& window) = 0;
     virtual ~Character() = default;
 protected:
