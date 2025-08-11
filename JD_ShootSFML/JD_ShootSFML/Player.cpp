@@ -24,26 +24,9 @@ void Player::update(float deltaTime, sf::RenderWindow& window, std::vector<Bulle
     
 
     sf::Vector2f playerPos = Sprite.getPosition();
-    sf::Vector2f rawAimDir = window.mapPixelToCoords(sf::Mouse::getPosition(window)) - playerPos;
-    float length = std::sqrt(rawAimDir.x * rawAimDir.x + rawAimDir.y * rawAimDir.y);
+    sf::Vector2f aimDir(1.f, 0.f);
+    Sprite.setRotation(sf::degrees(0.f));
 
-    sf::Vector2f aimDir;
-    if (length != 0) {
-        float angle = std::atan2(rawAimDir.y, rawAimDir.x); 
-
-        const float maxAngle = 10.f * 3.14159f / 180.f; 
-        if (angle > maxAngle) angle = maxAngle;
-        else if (angle < -maxAngle) angle = -maxAngle;
-
-        aimDir = sf::Vector2f(std::cos(angle), std::sin(angle)) * length;
-        
-        float angleDegrees = angle * 180.f / 3.14159f;
-        Sprite.setRotation(sf::degrees(angleDegrees));
-    }
-    else {
-        aimDir = rawAimDir;
-        Sprite.setRotation(sf::degrees(0.f));
-    }
 
     Sprite.setScale(sf::Vector2(2.8f, 2.8f));
 
@@ -58,7 +41,7 @@ void Player::update(float deltaTime, sf::RenderWindow& window, std::vector<Bulle
     if ((currentWeaponIndex == 0 && leftMouse) ||
         (currentWeaponIndex == 1 && leftMouse && !leftMousePreviouslyPressed)) {
 
-        sf::Vector2f dir = aimDir / length;
+        sf::Vector2f dir = aimDir;
         gun->tryShoot(playerPos, dir, bullets);
     }
     leftMousePreviouslyPressed = leftMouse;

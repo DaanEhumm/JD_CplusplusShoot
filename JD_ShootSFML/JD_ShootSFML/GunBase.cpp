@@ -16,7 +16,7 @@ void GunBase::tryShoot(sf::Vector2f position, sf::Vector2f direction, std::vecto
       showFlash = true;  
       flashClock.restart();
 
-      sf::Vector2f flashOffset(22.f, -16.f);
+      sf::Vector2f flashOffset(21.f, -16.f);
 
       float angle = std::atan2(direction.y, direction.x) * 180.f / 3.14159f;
       float rad = angle * 3.14159f / 180.f;
@@ -26,7 +26,7 @@ void GunBase::tryShoot(sf::Vector2f position, sf::Vector2f direction, std::vecto
           flashOffset.x * std::sin(rad) + flashOffset.y * std::cos(rad)
       );
 
-      muzzleFlash.setSize({ 10.f, 3.f });  
+      muzzleFlash.setSize({ 6.f, 2.f });  
       muzzleFlash.setFillColor(sf::Color::Yellow);  
       muzzleFlash.setPosition(position + rotatedOffset + direction * 30.f);
       muzzleFlash.setRotation(sf::degrees(std::atan2(direction.y, direction.x)));
