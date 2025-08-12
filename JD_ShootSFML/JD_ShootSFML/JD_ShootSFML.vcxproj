@@ -135,6 +135,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Animation.cpp" />
     <ClCompile Include="AR.cpp" />
     <ClCompile Include="Bullet.cpp" />
     <ClCompile Include="Enemey.cpp" />
@@ -146,12 +147,14 @@
     <ClCompile Include="SFMLHandler.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Animation.h" />
     <ClInclude Include="AR.h" />
     <ClInclude Include="Bullet.h" />
     <ClInclude Include="Character.h" />
     <ClInclude Include="Enemey.h" />
     <ClInclude Include="GameManager.h" />
     <ClInclude Include="GunBase.h" />
+    <ClInclude Include="CharacterStates.h" />
     <ClInclude Include="Pistol.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="SFMLHandler.h" />

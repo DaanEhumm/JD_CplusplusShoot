@@ -59,6 +59,14 @@ void GameManager::run() {
             }
         }
 
+        // in GameManager::run()
+        for (auto& enemy : enemies) {
+            std::cout << enemy.state << std::endl;
+            enemy.anim->CheckCondition(enemy.state);  // update animation (changes texture)
+            enemy.anim2->CheckCondition(enemy.state);
+            SFMLHandler::GetWindow().draw(enemy.Sprite);  // draw sprite with updated texture
+        }
+
 		// Remove bullets that are off-screen or have hit an enemy
         bullets.erase(std::remove_if(bullets.begin(), bullets.end(),
             [this, &window = SFMLHandler::GetWindow()](const Bullet& b) {

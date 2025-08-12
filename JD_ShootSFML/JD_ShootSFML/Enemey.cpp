@@ -10,8 +10,17 @@
 #include <functional>
 #include <cstdlib>
 #include <ctime>
+
+//const std::vector<std::string>& files, float interval, sf::Sprite& sprite
+// In Enemy.cpp
 Enemy::Enemy()
-    : Sprite(SFMLHandler::GetTexture("assets/textures/enemyAttack1.png")), Health(100.f), Speed(100.f), DealtDamage(false)
+    : Sprite(SFMLHandler::GetTexture("assets/textures/enemyAttack1.png")),
+    Health(100.f),
+    Speed(100.f),
+    DealtDamage(false), 
+    state(CharacterState::Idle),
+    anim(nullptr), // initialize pointer to null first
+    anim2(nullptr)
 {
     const sf::FloatRect bounds = Sprite.getLocalBounds();
     Sprite.setOrigin({ bounds.position.x + bounds.size.x * 0.5f, bounds.position.y + bounds.size.y });
@@ -21,7 +30,12 @@ Enemy::Enemy()
 
     constexpr float GROUND_Y = 555.f;
     Sprite.setPosition({ 800.f, GROUND_Y });
+
+    // now Sprite is fully constructed, create Animation
+    anim = new Animation(Animation::EnemyFiles, 0.2f, Sprite, CharacterState::Moving);
+    anim2 = new Animation(Animation::AttackFiles, 0.2f, Sprite, CharacterState::Attacking);
 }
+
 
 void Enemy::Move(const sf::Vector2f& targetPosition)
 {
@@ -33,8 +47,10 @@ void Enemy::Move(const sf::Vector2f& targetPosition)
 
     sf::Vector2f direction = target - currentPos;
     float distance = std::sqrt(direction.x * direction.x + direction.y * direction.y); // heel simpel A^2 + B^2 = C^2, om de afstand te berekenen.
-
-    if (distance > 0.01f)
+    if (state != CharacterState::Attacking) {
+        state = CharacterState::Moving;
+     }
+    if (distance > 0.1f)
     {
         sf::Vector2f dirNorm = direction / distance;
         float deltaTime = SFMLHandler::GetDeltaTime(); // smooth timing
@@ -58,6 +74,17 @@ void Enemy::ResetCooldown() {
     std::thread([this]() {
         std::this_thread::sleep_for(std::chrono::seconds(5));
         DealtDamage = false;
+        state = CharacterState::Moving;
+        }).detach();
+}
+
+void Enemy::ResetState() {
+    std::thread([this]() {
+        auto milliseconds = static_cast<int>((Enemy::anim2->interval * Enemy::anim2->files.size()) * 1000);
+        std::this_thread::sleep_for(std::chrono::milliseconds(milliseconds));
+
+   
+        state = CharacterState::Moving;
         }).detach();
 }
 
@@ -73,9 +100,13 @@ void Enemy::MoveToPlayer(Player& player) {
     if (distance < 20) {
 
         if (SFMLHandler::GetCollision(player.Sprite, Sprite) && DealtDamage == false) {
+            state = CharacterState::Attacking;
+            ResetState();
             player.TakeDamage(5);
             DealtDamage = true;
+        
             std::cout << "player should have taken damage, new player health:" << player.Health << std::endl;
+          
             ResetCooldown();
        }
     }
