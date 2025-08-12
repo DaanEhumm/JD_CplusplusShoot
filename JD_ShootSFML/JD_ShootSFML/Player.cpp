@@ -4,6 +4,15 @@
 #include <SFML/System.hpp>
 #include <cmath>
 #include "SFMLHandler.h"
+#include <iostream>
+#include <SFML/Graphics.hpp>
+#include <SFML/Window.hpp>   // for sf::Window, events, input
+#include <thread>
+#include <chrono>
+#include <functional>
+#include <cstdlib>
+#include <ctime>
+#include "GameManager.h"
 Player::Player()
     : Sprite(SFMLHandler::GetTexture("assets/textures/player.png")), Health(100.f)
 {
@@ -73,6 +82,45 @@ void Player::update(float deltaTime, sf::RenderWindow& window, std::vector<Bulle
 void Player::draw(sf::RenderWindow& window) {
     window.draw(Sprite);
     weapons[currentWeaponIndex]->draw(window);
+}
+
+
+
+
+
+void Player::AddForce() {
+    if (GameManager::goingUp) {
+        Player::Sprite.setPosition({
+            Player::Sprite.getPosition().x,
+            Player::Sprite.getPosition().y - GameManager::jumpSpeed * SFMLHandler::GetDeltaTime()
+            });
+
+        if (Player::Sprite.getPosition().y <= GameManager::jumpApex) {
+            GameManager::goingUp = false;
+        }
+    }
+    else {
+        Player::Sprite.setPosition({
+            Player::Sprite.getPosition().x,
+            Player::Sprite.getPosition().y + GameManager::jumpSpeed * SFMLHandler::GetDeltaTime()
+            });
+
+     
+        if (Player::Sprite.getPosition().y >= GameManager::floorY) {
+            Player::Sprite.setPosition(sf::Vector2(Player::Sprite.getPosition().x, GameManager::floorY));
+            isjumping = false;
+        }
+    }
+}
+
+void Player::Jump() {
+    if (!isjumping && sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Space)) {
+        isjumping = true;
+        GameManager::goingUp = true;
+    }
+    if (isjumping) {
+        AddForce();
+    }
 }
 
 void Player::TakeDamage(int Damage) {

@@ -12,8 +12,13 @@ public:
     int Health;
     void TakeDamage(int Damage);
     bool wantsToMoveRightPastLimit = false;
+    void Jump();
+  
+    bool isjumping;
 private:
+    void AddForce();
     std::vector<std::unique_ptr<GunBase>> weapons;
+    void ResetJump();
     int currentWeaponIndex = 0;
     bool leftMousePreviouslyPressed = false;
 };

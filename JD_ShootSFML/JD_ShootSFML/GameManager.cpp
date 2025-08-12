@@ -7,10 +7,14 @@
 #include <SFML/System.hpp>
 #include <SFML/Window.hpp>
 #include "Player.h"
-
+bool  GameManager::goingUp = false;
+float GameManager::floorY = 555.f;
+float GameManager::jumpApex = 450.f;
+float GameManager::jumpSpeed = 300.f;
 GameManager::GameManager()
     : skySprite(SFMLHandler::GetTexture("assets/textures/sky.png")),
     roadSprite(SFMLHandler::GetTexture("assets/textures/road.png"))
+  
 {
     skySprite.setScale({ 10.43f, 0.5f });
 	roadSprite.setScale({ 10.43f, 0.4f });
@@ -40,6 +44,7 @@ void GameManager::run() {
             worldOffsetX += scrollSpeed * deltaTime;
         }
 
+        player.Jump();
 
         for (auto& bullet : bullets)
             bullet.update(deltaTime);

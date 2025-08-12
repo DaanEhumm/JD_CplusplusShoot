@@ -11,7 +11,10 @@ public:
     GameManager();
     void run();
 
-   
+  static  bool goingUp ;
+  static float floorY;
+  static float jumpApex;
+  static float jumpSpeed ;
     sf::Vector2f getPlayerWorldPosition() const {
         return player.Sprite.getPosition() + sf::Vector2f(worldOffsetX, 0.f);
     }
