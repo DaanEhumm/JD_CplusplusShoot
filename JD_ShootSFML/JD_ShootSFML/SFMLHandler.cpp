@@ -76,12 +76,12 @@ sf::Texture& SFMLHandler::GetTexture(const std::string& Path) {
 }
 
 
-sf::Sprite  SFMLHandler::RenderSprite(sf::Texture& Texture, float X, float Y) {
-    sf::Sprite sprite(Texture);
-    sf::Vector2 myvector = sf::Vector2(X, Y);
-    sprite.setPosition(myvector);
-    return sprite;
-}
+    sf::Sprite  SFMLHandler::RenderSprite(sf::Texture& Texture, float X, float Y) {
+        sf::Sprite sprite(Texture);
+        sf::Vector2 myvector = sf::Vector2(X, Y);
+        sprite.setPosition(myvector);
+        return sprite;
+    }
 
 
 
@@ -104,19 +104,11 @@ bool SFMLHandler::GetCollision(const sf::Sprite& obj1, const sf::Sprite& obj2) {
 }
 
 
-void SFMLHandler::RenderAnimation(sf::Sprite& sprite, sf::RenderWindow& window, std::vector<std::string> files, float interval, float elapsed, int index) {
-    elapsed += SFMLHandler::GetDeltaTime();
-    if (elapsed >= interval) {
-        elapsed = 0.f;
-        if (index + 1 > files.size()) {
-            index = 0;
-        }
-        sf::Texture& texture = SFMLHandler::GetTexture(files[index]);
-        sprite.setTexture(texture);
-        window.draw(sprite);
-
-        RenderAnimation(sprite, window, files, interval, elapsed, index + 1);
-    }
+void SFMLHandler::RenderAnimation( sf::Sprite& sprite ,sf::Texture& file, float interval) {
+   
+    sprite.setTexture(file); 
+    sf::RenderWindow& window = SFMLHandler::GetWindow(); 
+ 
 }
 
 

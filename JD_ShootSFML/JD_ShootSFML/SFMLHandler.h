@@ -23,7 +23,7 @@ public:
     static float GetDeltaTime();
     static sf::Sprite RenderSprite(sf::Texture& texture, float x, float y);
     static sf::Texture& GetTexture(const std::string& path);
-    static void RenderAnimation(sf::Sprite& sprite, sf::RenderWindow& window, std::vector<std::string> files, float interval, float elapsed = 0, int index = 0);
+    static void RenderAnimation(sf::Sprite& sprite, sf::Texture& file, float interval);
 
 private:
     static sf::RenderWindow window;
