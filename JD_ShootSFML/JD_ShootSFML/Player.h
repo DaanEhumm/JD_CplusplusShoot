@@ -15,6 +15,14 @@ public:
     void Jump();
   
     bool isjumping;
+
+    GunBase* getCurrentWeapon() {
+        return weapons[currentWeaponIndex].get();
+    }
+
+    int getHealth() const { return Health; }
+    int getMaxHealth() const { return 100; }
+
 private:
     void AddForce();
     std::vector<std::unique_ptr<GunBase>> weapons;

@@ -15,6 +15,8 @@ public:
     virtual void draw(sf::RenderWindow& window);
     virtual void setPosition(const sf::Vector2f& pos, sf::RenderWindow& window) = 0;
 
+    int getCurrentAmmo() const { return currentAmmo; }
+    int getReserveAmmo() const { return reserveAmmo; }
 
 protected:
     int magazineSize = 10;

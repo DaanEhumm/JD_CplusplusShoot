@@ -17,7 +17,7 @@ AR::AR() {
    sprite->setScale(sf::Vector2f(0.8f, 0.8f));  
 
    magazineSize = currentAmmo = 26;  
-   reserveAmmo = 590;  
+   reserveAmmo = 260;  
    reloadTime = 1.5f;  
    fireCooldown = 0.1f;  
 }  

@@ -26,4 +26,13 @@ private:
 
     sf::Sprite skySprite;
     sf::Sprite roadSprite;
+    
+    sf::Font font;
+    sf::Text timerText;
+    sf::Clock timerClock;
+
+    sf::Text ammoText;
+
+    sf::RectangleShape healthBarBackground;
+    sf::RectangleShape healthBar;
 };
