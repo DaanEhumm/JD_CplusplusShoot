@@ -1,6 +1,7 @@
 #include "Animation.h"
 #include "CharacterStates.h"
 #include "SFMLHandler.h"
+#include <iostream>
 Animation::Animation(const std::vector<std::string>& files, float interval, sf::Sprite& sprite, CharacterState con)
     : files(files), interval(interval), Sprite(sprite), condition(con), index(0), elapsed(0.f)
 {
@@ -43,9 +44,11 @@ void Animation::PlayAnimation() {
 
 void Animation::CheckCondition(CharacterState State) {
     if (Animation::condition == State) {
+
         if (index + 1 >= files.size()) {
             index = 0;
         }
         PlayAnimation();
     }
+ 
 }

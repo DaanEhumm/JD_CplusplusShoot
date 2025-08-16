@@ -15,22 +15,24 @@ bool  GameManager::goingUp = false;
 float GameManager::floorY = 555.f;
 float GameManager::jumpApex = 450.f;
 float GameManager::jumpSpeed = 300.f;
+sf::Clock GameManager::SpawnClock;
+const sf::Time GameManager::SpawnInterval = sf::seconds(2.f);
 
 GameManager::GameManager()
     : skySprite(SFMLHandler::GetTexture("assets/textures/sky.png")),
-    roadSprite(SFMLHandler::GetTexture("assets/textures/road.png")), 
-	timerText(font), ammoText(font)
+    roadSprite(SFMLHandler::GetTexture("assets/textures/road.png")),
+    timerText(font), ammoText(font)
 {
     skySprite.setScale({ 10.43f, 0.5f });
-	roadSprite.setScale({ 10.43f, 0.4f });
+    roadSprite.setScale({ 10.43f, 0.4f });
     skySprite.setPosition(sf::Vector2f(0.f, 0.f));
-    roadSprite.setPosition(sf::Vector2f( 0.f, 172.f )); 
+    roadSprite.setPosition(sf::Vector2f(0.f, 172.f));
 
 
-	//HUD / UI setup
+    //HUD / UI setup
     if (!font.openFromFile("assets/fonts/Roboto-Regular.ttf")) {
         std::cout << "Failed to load HUD font\n";
-    }  
+    }
     timerText.setFont(font);
     timerText.setCharacterSize(20);
     timerText.setString("00:00");
@@ -45,8 +47,8 @@ GameManager::GameManager()
     ammoText.setOutlineThickness(2.f);
     ammoText.setString("Ammo: 0 / 0");
 
-    healthBarBackground.setSize({ 200.f, 20.f });  
-    healthBarBackground.setFillColor(sf::Color(50, 50, 50, 200)); 
+    healthBarBackground.setSize({ 200.f, 20.f });
+    healthBarBackground.setFillColor(sf::Color(50, 50, 50, 200));
     healthBarBackground.setOrigin(healthBarBackground.getSize() * 0.5f);
 
     healthBar.setSize({ 200.f, 20.f });  // full health
@@ -58,16 +60,28 @@ bool intersects(const sf::FloatRect& a, const sf::FloatRect& b) {         // Hel
     return a.position.x < b.position.x + b.size.x &&
         a.position.x + a.size.x > b.position.x &&
         a.position.y < b.position.y + b.size.y &&
-        a.position.y + a.size.y > b.position.y;                  
+        a.position.y + a.size.y > b.position.y;
 }
 
 void GameManager::run() {
-    std::vector<Enemy> enemies;
-    enemies.emplace_back(); // DIT IS TIJDELIJKK!!! 1 ENEMY TEST
+
+    std::vector<std::unique_ptr<Enemy>> enemies;
+
+
 
     while (SFMLHandler::IsOpen()) {
         SFMLHandler::ProcessEvents();
         float deltaTime = SFMLHandler::GetDeltaTime();
+
+        for (auto& enemy : enemies) {
+            sf::Sprite& eSprite = enemy->Sprite;
+            sf::Vector2f pos = eSprite.getPosition();
+
+            eSprite.setPosition(sf::Vector2f(pos.x - worldOffsetX, pos.y));
+            SFMLHandler::GetWindow().draw(eSprite);
+          
+            eSprite.setPosition(pos); // restore original
+        }
 
         player.update(deltaTime, SFMLHandler::GetWindow(), bullets, worldOffsetX);
 
@@ -82,26 +96,20 @@ void GameManager::run() {
             bullet.update(deltaTime);
 
         for (auto& enemy : enemies)
-            enemy.MoveToPlayer(player);
+            enemy->MoveToPlayer(player);
 
         for (auto& bullet : bullets) {
             for (auto& enemy : enemies) {
                 sf::FloatRect bulletBounds = bullet.getBounds();
-                sf::FloatRect enemyBounds = enemy.getBounds();
+                sf::FloatRect enemyBounds = enemy->getBounds();
 
-                if (!bullet.hit && intersects(bullet.getBounds(), enemy.getBounds())) {
+                if (!bullet.hit && intersects(bullet.getBounds(), enemy->getBounds())) {
                     bullet.hit = true;
-                    enemy.takeDamage(40.f);
+                    enemy->takeDamage(40.f);
                 }
             }
         }
 
-        for (auto& enemy : enemies) {
-            std::cout << enemy.state << std::endl;
-            enemy.anim->CheckCondition(enemy.state);  // update animation (changes texture)
-            enemy.anim2->CheckCondition(enemy.state);
-            SFMLHandler::GetWindow().draw(enemy.Sprite);  // draw sprite with updated texture
-        }
 
         // Remove bullets that are off-screen or have hit an enemy
         bullets.erase(std::remove_if(bullets.begin(), bullets.end(),
@@ -109,9 +117,10 @@ void GameManager::run() {
                 return b.isOffScreen(window, this->worldOffsetX) || b.hit;
             }),
             bullets.end());
-        // Remove dead enemies 
+
+        // Remove dead enemies
         enemies.erase(std::remove_if(enemies.begin(), enemies.end(),
-            [](const Enemy& e) { return !e.isAlive(); }),
+            [](const std::unique_ptr<Enemy>& e) { return !e->isAlive(); }),
             enemies.end());
 
 
@@ -129,13 +138,7 @@ void GameManager::run() {
         }
         player.draw(SFMLHandler::GetWindow());
 
-        for (auto& enemy : enemies) {
-            sf::Sprite& eSprite = enemy.Sprite;
-            sf::Vector2f pos = eSprite.getPosition();
-            eSprite.setPosition(sf::Vector2(pos.x - worldOffsetX, pos.y));
-            SFMLHandler::GetWindow().draw(eSprite);
-            eSprite.setPosition(pos);
-        }
+
 
         for (auto& bullet : bullets) {
             sf::Vector2f screenPos = bullet.sprite.getPosition() - sf::Vector2f(worldOffsetX, 0.f);
@@ -179,10 +182,20 @@ void GameManager::run() {
         ammoText.setPosition(sf::Vector2f(viewCenter.x + viewSize.x / 2.f - 10.f,
             viewCenter.y + viewSize.y / 2.f - 10.f));
         window.draw(ammoText);
+        if (enemies.size() < 3 && GameManager::SpawnClock.getElapsedTime() >= GameManager::SpawnInterval) {
+            enemies.push_back(std::make_unique<Enemy>()); 
+            GameManager::SpawnClock.restart();
+        }
 
-		// Health bar - top center 
+        // Health bar - top center 
         healthBarBackground.setPosition(sf::Vector2f(viewCenter.x, viewCenter.y - viewSize.y / 2.f + 20.f));
         healthBar.setPosition(sf::Vector2f(viewCenter.x, viewCenter.y - viewSize.y / 2.f + 20.f));
+        for (auto& enemy : enemies) {
+            enemy->MoveToPlayer(player);
+            enemy->anim->CheckCondition(enemy->state);
+            enemy->anim2->CheckCondition(enemy->state);
+            SFMLHandler::GetWindow().draw(enemy->Sprite);
+        }
 
         // Update health value
         float healthPercent = static_cast<float>(player.getHealth()) / player.getMaxHealth();

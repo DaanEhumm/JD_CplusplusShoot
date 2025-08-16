@@ -12,7 +12,7 @@
 #include <ctime>
 
 //const std::vector<std::string>& files, float interval, sf::Sprite& sprite
-// In Enemy.cpp
+
 Enemy::Enemy()
     : Sprite(SFMLHandler::GetTexture("assets/textures/enemyAttack1.png")),
     Health(100.f),
@@ -32,8 +32,9 @@ Enemy::Enemy()
     Sprite.setPosition({ 800.f, GROUND_Y });
 
     // now Sprite is fully constructed, create Animation
-    anim = new Animation(Animation::EnemyFiles, 0.2f, Sprite, CharacterState::Moving);
-    anim2 = new Animation(Animation::AttackFiles, 0.2f, Sprite, CharacterState::Attacking);
+    anim = std::make_unique<Animation>(Animation::EnemyFiles, 0.2f, Sprite, CharacterState::Moving);
+    anim2 = std::make_unique<Animation>(Animation::AttackFiles, 0.2f, Sprite, CharacterState::Attacking);
+
 }
 
 

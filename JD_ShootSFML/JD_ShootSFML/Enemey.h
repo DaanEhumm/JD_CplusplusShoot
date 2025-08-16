@@ -15,13 +15,9 @@ public:
     bool isAlive() const;
     void takeDamage(float damage);
     sf::FloatRect getBounds() const;
-    Animation* anim;
-    ~Enemy() {
-        delete anim;
-        delete anim2;
-    }
-
-    Animation* anim2;  // if more animations are nesisary, do a different approach but for now we only need 2 so this is fine.
+   
+    std::unique_ptr<Animation> anim;
+    std::unique_ptr<Animation> anim2;// if more animations are nesisary, do a different approach but for now we only need 2 so this is fine.
 
 private: 
     void ResetCooldown();

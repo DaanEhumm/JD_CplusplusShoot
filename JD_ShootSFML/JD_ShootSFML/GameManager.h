@@ -19,6 +19,8 @@ public:
         return player.Sprite.getPosition() + sf::Vector2f(worldOffsetX, 0.f);
     }
     float worldOffsetX = 0.f;
+    static sf::Clock SpawnClock;
+    static const sf::Time SpawnInterval;
 private:
  
     Player player;
